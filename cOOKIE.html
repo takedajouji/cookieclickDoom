@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <style>
+        body {
+            background-color: magenta;
+            font-family: "Papyrus", fantasy;
+            text-align: left;
+            color: neon;
+            overflow: hidden;
+        }
+
+        h1 {
+            background: lime;
+            padding: 10px;
+            border: 10px dashed purple;
+            font-size: 10px;
+            text-align: right;
+            color: navy;
+        }
+
+        #cookie {
+            width: 150px;
+            height: 150px;
+            background-color: orange;
+            border-radius: 0%;
+            margin-top: 100px;
+            cursor: crosshair;
+            box-shadow: 15px 15px 30px black;
+            display: inline-block;
+            line-height: 150px;
+            font-size: 60px;
+            color: green;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #counter {
+            margin-top: 50px;
+            font-size: 8px;
+            background-color: yellow;
+            padding: 10px;
+            display: inline-block;
+            border: 8px solid cyan;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-weight: 900;
+        }
+
+        button {
+            position: absolute;
+            background-color: crimson;
+            color: white;
+            font-size: 5px;
+            padding: 5px;
+            border: 5px groove black;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<h1>COOKIE CHAOS</h1>
+
+<div id="cookie">🍪</div>
+
+<div id="counter">Cookies: 0</div>
+
+<button id="uselessButton">DO NOT CLICK</button>
+
+<script>
+    let cookies = 0;
+
+    const cookie = document.getElementById('cookie');
+    const counter = document.getElementById('counter');
+    const button = document.getElementById('uselessButton');
+
+    function moveElementRandomly(el) {
+        const x = Math.random() * (window.innerWidth - el.offsetWidth);
+        const y = Math.random() * (window.innerHeight - el.offsetHeight);
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+    }
+
+    cookie.addEventListener('click', () => {
+        const randomEffect = Math.random();
+        if (randomEffect < 0.3) {
+            cookies--;
+        } else if (randomEffect > 0.7) {
+            cookies *= 2;
+        } else {
+            cookies++;
+        }
+        if (cookies < 0) cookies = 0;
+        counter.innerText = `Cookies: ${cookies}`;
+        moveElementRandomly(cookie);
+    });
+
+    button.addEventListener('mouseover', () => {
+        moveElementRandomly(button);
+    });
+</script>
+</body>
+</html>
